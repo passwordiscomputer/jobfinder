@@ -1,0 +1,155 @@
+<form action="/" method="post">
+  <div class="container-fluid main-header-block">
+    <center class="second-header-block">
+      <div class="languages">
+        <h3 class="error"><%= @error_message %></h3>
+
+        <h3 class="title">Choose Your Location:</h3>
+
+
+        <select name="location">
+          <option>portland</option>
+          <option>bend</option><option>corvallis/albany</option><option>east oregon</option><option>eugene</option><option>klamath falls</option><option>medford-ashland</option><option>oregon coast</option><option>roseburg</option><option>salem</option>
+          <option>bellingham</option><option>kennewick-pasco-richland</option><option>moses lake</option><option>olympic peninsula</option><option>pullman / moscow</option><option>seattle-tacoma</option><option>skagit / island / SJI</option><option>spokane / coeur d'alene</option><option>wenatchee</option><option>yakima</option>
+        </select>
+
+        <h3 class="title"><br>Select All of Your Primary Languages:</h3>
+
+        <div class="row">
+          <div class="col-xs-2">
+            <div class="border-margin">
+              <input name="item[]" value="php" type="checkbox" id="php"> <label for="php">PHP</label>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin">
+              <input name="item[]" value="java" type="checkbox" id="java">
+              <label for="java">Java</label>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin">
+              <input name="item[]" value="android" type="checkbox" id="android"> <label for="android">Android</label>
+            </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="c#" type="checkbox" id="csharp"> <label for="csharp">C#</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="ruby" type="checkbox" id="ruby"> <label for="ruby">Ruby</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="drupal" type="checkbox" id="drupal"> <label for="drupal">Drupal</label>
+          </div>
+        </div>
+        <div class="row">
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value=".NET" type="checkbox" id="dotnet"> <label for="dotnet">.NET</label>
+          </div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="rails" type="checkbox" id="rails"> <label for="rails">Rails</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="react" type="checkbox" id="react"> <label for="react">React</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="ember.js" type="checkbox" id="emberjs"> <label for="emberjs">Ember.js</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="swift" type="checkbox" id="swift"> <label for="swift">Swift</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="python" type="checkbox" id="python"> <label for="python">Python</label></div>
+        </div>
+        <div class="row">
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="Visual Basic" type="checkbox" id="visualbasic"> <label for="visualbasic">Visual<br>Basic</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="iOS" type="checkbox" id="ios"> <label for="ios">iOS</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="javascript" type="checkbox" id="javascript"> <label for="javascript">JavaScript</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="c" type="checkbox" id="c"> <label class="c" for="c">C</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="devops" type="checkbox" id="devops"> <label for="devops">DevOps</label></div>
+          </div>
+          <div class="col-xs-2">
+            <div class="border-margin"><input name="item[]" value="fullstack" type="checkbox" id="fullstack"> <label for="fullstack">Full<br>Stack</label></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <br>
+            <a class="advanced-options-button">Advanced Options</a>
+          </div>
+        </div>
+      </div>
+      <div class="advanced-options">
+
+        <h5>Experience Level:
+          <br><i>(Only used for indeed)</i>
+        </h5>
+        <select class="" name="level">
+          <option></option>
+          <option>Entry</option>
+          <option>Mid</option>
+          <option>Senior</option>
+        </select>
+        <h5>Search Radius:</h5>
+        <select class="" name="distance">
+          <option></option>
+          <option>5 miles</option>
+          <option>10 miles</option>
+          <option>15 miles</option>
+          <option>25 miles</option>
+          <option>50 miles</option>
+          <option>100 miles</option>
+          <option>150 miles</option>
+        </select>
+        <h5>Zipcode:</h5>
+        <input type="number" name="zip" value="">
+
+
+      </div>
+      <button class="main-button" type="submit" name="button">submit</button>
+      </div>
+    </center>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-6">
+
+        <div class="well">
+        <h3 class="text-center">Your Jobs</h3>
+          <div class="form-group jobs-well">
+            <% Job.all.each do |job| %>
+              <h4 class="inline"><input class="pin" type="checkbox" name="job_<%= job.id %>" value="pinned" <%= if job.pinned then "checked" end %>> <a href="<%=job.link%>"><%=job.title%></a></h4><br>
+              <p class="inline"><%=job.company%> | <%=job.days_posted%> |  <%=job.location%></p><br>
+              <hr>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="well">
+          <h3 class="text-center">Suggested Meetups</h3>
+          <div class="form-group jobs-well">
+            <% @meetups.first(15).each do |meetup| %>
+            <% time = Time.at(meetup.time / 1000) %>
+              <h4 class="inline"><input class="pin" type="checkbox" name="meetup_<%= meetup.id %>" value="pinned" <%= if meetup.pinned then "checked" end %>>
+                <a href="/meetups/<%= meetup.id %>"><%= meetup.name %></a></h4><br>
+              <p class="inline"><%= Time.at(meetup.time / 1000).strftime("%A %B %-d | %l:%M %P") %> | <%= meetup.venue_city %>, <%= meetup.venue_state%></p><br>
+              <hr>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

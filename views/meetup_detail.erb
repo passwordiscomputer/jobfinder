@@ -1,0 +1,33 @@
+<form action="/" method="get">
+  <div class="well">
+    <h2 class="text-center"><%= @meetup.name %> <button type="submit" class="btn btn-primary btn-sm">Home</button></h2>
+    <h4 class="text-center"><em><%= Time.at(@meetup.time / 1000).strftime("%A %B %-d, %l:%M %P") %> ~ <%= @meetup.venue_city %></em></h4>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+
+      <div class="well">
+        <h3 class="text-center">About the meetup</h3>
+        <p class="inline"><%= @meetup.description %></p>
+        <br>
+        <h4><a href="<%= @meetup.event_url %>">See entry at Meetup.com</a><h4>
+      </div>
+      <div class="well">
+        <h3 class="text-center">About the venue</h3>
+        <h4><%= @meetup.venue_name %></h4>
+        <p><%= @meetup.venue_address_1 %>, <%= @meetup.venue_city %>, <%= @meetup.venue_state%> <%= @meetup.venue_zip%></p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="well">
+        <h3 class="text-center">Popular Topics</h3>
+        <p class="text-center">(By group members interested)</p>
+        <% @topics.sort {|a, b| b[1]<=>a[1]}.first(25).each do |topic, count| %>
+        <p><%= "#{topic} (#{count})" %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
